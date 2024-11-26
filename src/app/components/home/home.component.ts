@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import TypewriterComponent from 'typewriter-effect';
 import { TypewriterServiceService } from '../../service/typewriter-service.service';
 import { CommonModule } from '@angular/common';
 
