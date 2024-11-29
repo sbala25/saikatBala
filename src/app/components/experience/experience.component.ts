@@ -3,7 +3,7 @@ import { BlogsComponent } from "../blogs/blogs.component";
 
 @Component({
   selector: 'app-experience',
-  imports: [BlogsComponent],
+  imports: [],
   templateUrl: './experience.component.html',
   styleUrl: './experience.component.scss'
 })
