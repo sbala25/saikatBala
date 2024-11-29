@@ -1,12 +1,17 @@
-<nav class="navbar sticky fixed-top navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar navbar-expand-md navbar-light fixed-top"  [ngClass]="{'sticky': navColour}">
     <div class="container">
         <a routerLink="" class="navbar-brand" href="javascjavascript:void(0)">
             <div class="d-flex flex-row justify-content-between">
-                <img src="assets/images/profile2.png" class="logo" alt="brand" />
-                <h5 style="margin-left: 21px; padding-top: 6px; color: rgb(251, 217, 173);">Saikat Bala</h5>
+                <img src="assets/images/profile2.webp" class="logo" alt="brand" />
+                <h5>Saikat Bala</h5>
             </div>
         </a>
-        <div class="navbarmain navbar-collapse collapse" id="responsive-navbar-nav">
+        <button type="button" class="navbar-toggler" (click)="collapseMenu()" [ngClass]="{'collapsed': !isCollapseMenu}">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="navbarmain navbar-collapse collapse" [ngClass]="{'show': isCollapseMenu}">
             <div class="ml-auto navbar-nav">
                 <div class="nav-item">
                     <a class="nav-link" routerLink="" href="javascjavascript:void(0)">

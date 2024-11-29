@@ -206,7 +206,7 @@ html {
 }
 
 .navbar-nav .nav-link {
-    color: #fbd9ad !important;
+    color: #fff !important;
     padding-right: 1rem !important;
     padding-left: 1rem !important;
 }
@@ -245,7 +245,7 @@ html {
     height: 5px;
     width: 0;
     border-radius: 16px;
-    background: #fbd9ad;
+    background: #fff;
     bottom: 1px;
     left: 0;
     z-index: -1;
@@ -322,24 +322,25 @@ html {
 .home-section {
     position: relative;
     z-index: 2;
-    background-image: var(--image-gradient), url('./../../assets/images/h3.jpg');
+    background-image: var(--image-gradient), url('./../../assets/images/h3.webp');
     background-position: top center;
     background-size: cover !important;
     background-repeat: no-repeat;
     padding-bottom: 22px !important;
-    padding-top: 30px !important;
+    padding-top: 120px;
 }
 
 .home-content {
-    padding: 9rem 0 2rem !important;
-    color: #fbd9ad;
+    padding: 0 0 2rem;
+    color: #fff;
     text-align: left;
     z-index: 6;
 }
 
 .heading {
-    font-size: 4.4em !important;
-    padding-left: 45px !important;
+    font-size: 4.4em;
+    padding-left: 45px;
+    padding-bottom: 15px;
 }
 
 .heading-name {
@@ -412,7 +413,7 @@ html {
 
     .socialicons {
         padding-top: 10px;
-        padding-right: 3px !important;
+        padding-right: 3px;
     }
 }
 
@@ -433,14 +434,14 @@ html {
     position: relative;
     padding-bottom: 70px !important;
     padding-top: 70px !important;
-    color: #fbd9ad;
+    color: #fff;
 }
 
 .certificate-section {
     position: relative;
     padding-bottom: 70px !important;
     padding-top: 0px !important;
-    color: #fbd9ad;
+    color: #fff;
 }
 
 .home-about-description {
@@ -516,9 +517,14 @@ html {
 }
 
 .social-icons {
-    display: inline-block !important;
+    display: inline-block;
     padding-right: 15px;
     padding-left: 15px;
+
+    a{
+        color: #fff;
+    }
+    
 }
 
 .icon-colour {
@@ -548,7 +554,7 @@ html {
 
 .aboutme-heading {
     font-size: 4.6em;
-    color: #fbd9ad;
+    color: #fff;
 }
 
 @media (max-width: 767px) {
@@ -905,23 +911,23 @@ html {
 .nav-fill .nav-item .nav-link,
 .nav-justified .nav-item .nav-link.active {
     color: #a12be6 !important;
-    background-color: #fbd9ad;
-    border-color: #fbd9ad #fbd9ad #fbd9ad;
+    background-color: #fff;
+    border-color: #fff #fff #fff;
     font-size: 17px;
     font-weight: 600;
 }
 
 .nav-tabs .nav-link:focus,
 .nav-tabs .nav-link:hover {
-    border-color: #fbd9ad #fbd9ad #fbd9ad !important;
+    border-color: #fff #fff #fff !important;
     isolation: isolate !important;
-    color: #fbd9ad !important;
+    color: #fff !important;
 }
 
 .nav-link {
     display: block;
     padding: 0.5rem 1rem;
-    color: #fbd9ad !important;
+    color: #fff !important;
     text-decoration: none;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
 }
@@ -933,7 +939,7 @@ html {
 }
 
 .nav-tabs {
-    border-bottom: 1px solid #fbd9ad !important;
+    border-bottom: 1px solid #fff !important;
 }
 
 .progress {
@@ -1067,52 +1073,60 @@ html {
     padding-inline-start: 0 !important;
 }
 
-.homesocialicons {
-    position: relative !important;
-    display: inline-block !important;
-    width: 40px !important;
-    height: 40px !important;
-    text-align: center !important;
-    font-size: 1.4em !important;
-    line-height: 1.5em !important;
-    background: rgba(251, 217, 173, 0.972) !important;
-    border-radius: 50% !important;
-    transition: 0.5s !important;
+.homesocialicons{
+    display: inline-block;
+    text-decoration: none;
+    color: #700c86;
+
+    strong{
+        color: #fff;
+        font-size: 20px;
+    }
+    span{
+        position: relative;
+        display: inline-block;
+        width: 40px;
+        height: 40px ;
+        text-align: center;
+        font-size: 1.4em;
+        line-height: 1.5em;
+        background: rgba(251, 217, 173, 0.972);
+        border-radius: 50%;
+        transition: 0.5s;
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #68187a;
+            transition: 0.5s;
+            transform: scale(0.9);
+            z-index: -1;
+        }
+    }
+    &:hover {
+        span{
+            color: #87209e;
+            box-shadow: 0 0 25px #87209e;
+            text-shadow: 0 0 2px #87209e;
+    
+            &:before {
+                transform: scale(1.1);
+                box-shadow: 0 0 15px #801f95;
+            }
+        } 
+    }
 }
 
-.homesocialicons::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: #68187a;
-    transition: 0.5s;
-    transform: scale(0.9);
-    z-index: -1;
-}
-
-.homesocialicons:hover::before {
-    transform: scale(1.1);
-    box-shadow: 0 0 15px #801f95;
-}
-
-.homesocialicons:hover {
-    color: #87209e;
-    box-shadow: 0 0 25px #87209e;
-    text-shadow: 0 0 2px #87209e;
-}
 
 .socialicons {
-    display: inline-block !important;
+    display: inline-block;
     padding-right: 10px;
     padding-left: 10px;
-}
-
-.iconcolour {
-    color: #700c86 !important;
 }
 
 .cert-card {
@@ -1252,7 +1266,7 @@ html {
 
 .blog--viewAll a {
     text-decoration: none;
-    color: #fbd9ad;
+    color: #fff;
 }
 
 .blog--viewAll a button {
@@ -1270,15 +1284,15 @@ html {
     font-weight: 500;
     padding-left: 1.5rem;
     cursor: pointer;
-    color: #fbd9ad !important;
+    color: #fff !important;
 }
 
 .blog--viewAll a button:hover {
-    color: #fbd9ad !important;
+    color: #fff !important;
 }
 
 .viewArr {
-    color: #fbd9ad;
+    color: #fff;
     width: 40px;
     height: 40px;
     padding: 0.5rem;
@@ -1288,7 +1302,7 @@ html {
 }
 
 .viewArr:hover {
-    color: #fbd9ad;
+    color: #fff;
 }
 
 
@@ -1423,14 +1437,14 @@ html {
     width: 40px;
     height: 40px;
     border-radius: 50px;
-    border: 2px solid #fbd9ad;
-    color: #fbd9ad;
+    border: 2px solid #fff;
+    color: #fff;
     transition: all 0.2s;
 
 }
 
 .iconBtn:hover {
-    background-color: #fbd9ad;
+    background-color: #fff;
     color: rgb(93 43 123);
     transform: scale(1.1);
     border: 2px solid rgb(93 43 123);
@@ -1442,9 +1456,9 @@ html {
 }
 
 .input-class {
-    border: 4px solid #fbd9ad;
+    border: 4px solid #fff;
     background-color: #150d23;
-    color: #fbd9ad;
+    color: #fff;
     font-weight: 500;
     transition: border 0.2s ease-in-out;
 }
@@ -1462,7 +1476,7 @@ html {
 }
 
 .form-input::placeholder {
-    color: #fbd9ad;
+    color: #fff;
 }
 
 .input-container {
@@ -1485,7 +1499,7 @@ html {
 
 .label-class {
     background-color: #150d23;
-    color: #fbd9ad;
+    color: #fff;
     font-weight: 600;
     font-size: 0.9rem;
     padding: 0 5px;
@@ -1507,7 +1521,7 @@ html {
 }
 
 .form-message::placeholder {
-    color: #fbd9ad;
+    color: #fff;
 }
 
 .contacts-body {
@@ -1518,25 +1532,22 @@ html {
     width: 100%;
 }
 
-.submit-btn button {
+.submit-btn {
     border: none;
     outline: none;
-    width: 140px;
     height: 50px;
     border-radius: 50px;
-    font-weight: 500;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
     cursor: pointer;
-}
-
-.submitBtn {
-    background-color: #fbd9ad;
+    padding: 10px 20px;
     color: #742586;
     transition: 250ms ease-in-out;
+    background-color: #fff;
     font-weight: 700;
+    text-decoration: none;
 }
 
 .send-icon {
@@ -1565,7 +1576,7 @@ html {
 }
 
 .detailsIcon {
-    background-color: #fbd9ad;
+    background-color: #fff;
     color: #742586;
     border-radius: 50%;
     width: 45px;
@@ -1580,7 +1591,7 @@ html {
 
 .detailsIcon:hover {
     transform: scale(1.1);
-    color: #fbd9ad;
+    color: #fff;
     background-color: #742586;
 }
 
@@ -1635,6 +1646,7 @@ html {
     width: 57%;
     word-break: break-word;
     text-align: left;
+    color: #fff;
 }
 
 
@@ -1669,7 +1681,7 @@ html {
     font-weight: 600;
     font-size: 2.2rem;
     line-height: 110%;
-    color: '#fbd9ad' !important;
+    color: '#fff' !important;
     text-align: center;
 }
 
@@ -1759,14 +1771,14 @@ html {
     width: 44px;
     height: 44px;
     border-radius: 50px;
-    border: 2px solid #fbd9ad;
-    color: #fbd9ad;
+    border: 2px solid #fff;
+    color: #fff;
     transition: all 0.2s;
 
 }
 
 .iconBtn:hover {
-    background-color: #fbd9ad;
+    background-color: #fff;
     color: rgb(93 43 123);
     transform: scale(1.1);
     border: 2px solid rgb(93 43 123);
