@@ -1,0 +1,78 @@
+<section class="modalWrap">
+
+    <div class="modalInner">
+        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+            else.</small> -->
+        <h3 class="text-center mb-4">Experience</h3>
+        <form [formGroup]="experienceForm" (ngSubmit)="onExperienceSubmit()">
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-checkbox 
+                    [checked]="isCurrentCompany()"
+                    (change)="update($event)"
+                    >I am currently working for this company</mat-checkbox>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <mat-form-field>
+                            <mat-label>Start Data</mat-label>
+                            <input matInput [matDatepicker]="picker_start_date" formControlName="start_date" [max]="maxDate">
+                            <!-- <mat-hint>dd/DD/YYYY</mat-hint> -->
+                            <mat-datepicker-toggle matIconSuffix [for]="picker_start_date"></mat-datepicker-toggle>
+                            <mat-datepicker #picker_start_date startView="multi-year"></mat-datepicker>
+                        </mat-form-field>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <mat-form-field>
+                            <mat-label>End Date</mat-label>
+                            <input matInput [matDatepicker]="picker_end_date" formControlName="end_date"  [max]="maxDate">
+                            <!-- <mat-hint>dd/DD/YYYY</mat-hint> -->
+                            <mat-datepicker-toggle matIconSuffix [for]="picker_end_date"></mat-datepicker-toggle>
+                            <mat-datepicker #picker_end_date  startView="multi-year"></mat-datepicker>
+                        </mat-form-field>
+
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Designation</label>
+                <input type="text" class="form-control" placeholder="Enter designation" formControlName="designation">
+            </div>
+            <div class="form-group">
+                <label>Company name</label>
+                <input type="text" class="form-control" placeholder="Enter designation" formControlName="company_name">
+            </div>
+            <div class="form-group">
+                <label>Office City</label>
+                <input type="text" class="form-control" placeholder="Enter designation" formControlName="office_city">
+            </div>
+            <div class="form-group">
+                <label>Office Country</label>
+                <input type="text" class="form-control" placeholder="Enter designation"
+                    formControlName="office_country">
+            </div>
+            <div class="form-group">
+                <label>Skills</label>
+                <input type="text" class="form-control" placeholder="Enter designation" formControlName="skills">
+            </div>
+            <div class="form-group">
+                <label>Tools</label>
+                <input type="text" class="form-control" placeholder="Enter designation" formControlName="tools">
+            </div>
+            <div class="form-group">
+                <label>Work Description</label>
+                <input type="text" class="form-control" placeholder="Enter designation"
+                    formControlName="work_description">
+            </div>
+            <div class="form-group">
+                <label>Company logo</label>
+                <input type="text" class="form-control" placeholder="Enter designation" formControlName="company_logo">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-secondary" (click)="closeModal.emit()">Cancel</button>
+        </form>
+    </div>
+</section>

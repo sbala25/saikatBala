@@ -18,4 +18,5 @@
         </svg>
     </span>
 </a>
-<!-- <div id="preloader" *ngIf="preloader"></div> -->
+<div class="preloader" *ngIf="preloader && !isDevMode"></div>
+<app-loader *ngIf="isLoaderApi()"></app-loader>
