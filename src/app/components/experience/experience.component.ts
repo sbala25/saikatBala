@@ -1,7 +1,5 @@
 import { Component, inject, model, OnDestroy, OnInit, signal } from '@angular/core';
-import { BlogsComponent } from "../blogs/blogs.component";
 import { ApiManagerService } from '../../service/api-manager.service';
-import { ExperienceModalComponent } from "../modal/experience-modal/experience-modal.component";
 import { CommonModule } from '@angular/common';
 import { UtilsService } from '../../service/utils.service';
 import { ConfirmModalComponent } from '../modal/confirm-modal/confirm-modal.component';
@@ -16,7 +14,7 @@ import * as fortawesome_solid from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-experience',
-  imports: [CommonModule, ExperienceModalComponent, MatIconModule, MatButtonModule, FontAwesomeModule],
+  imports: [CommonModule, MatIconModule, MatButtonModule, FontAwesomeModule],
   templateUrl: './experience.component.html',
   styleUrl: './experience.component.scss'
 })
@@ -48,12 +46,6 @@ export class ExperienceComponent implements OnInit, OnDestroy {
     this.isAdminSub.unsubscribe();
   }
 
-  onCloseExperienceModal(e: any) {
-    this.isExperienceModal = false;
-    if (e?.refresh)
-      this.loadExperience();
-  }
-
   loadExperience() {
     this._apiManager.getRequest("experience").subscribe(res => {
       let sortedData: any = res;
@@ -70,9 +62,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
   }
 
   deleteExperience(experience_id: string) {
-    const dialogRef = this.dialog.open(ConfirmModalComponent, {
-      // data: {name: this.name(), animal: this.animal()},
-    });
+    const dialogRef = this.dialog.open(ConfirmModalComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result)

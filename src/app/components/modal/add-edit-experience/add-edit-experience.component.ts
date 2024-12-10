@@ -3,7 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ApiManagerService } from '../../../service/api-manager.service';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -21,7 +21,24 @@ export class AddEditExperienceComponent implements OnInit {
   currentItem = inject(MAT_DIALOG_DATA);
   isCurrentCompany = signal<boolean>(false);
   maxDate = new Date();
-  experienceForm: any;
+
+  experienceForm = new FormGroup({
+    experience_id: new FormControl(null),
+    start_date: new FormControl(null, [Validators.required]),
+    end_date: new FormControl(null),
+    designation: new FormControl('', Validators.required),
+    company_name: new FormControl('', Validators.required),
+    office_city: new FormControl(''),
+    office_country: new FormControl(''),
+    skills: new FormControl(''),
+    tools: new FormControl(''),
+    work_description: new FormControl(''),
+    company_logo: new FormControl(''),
+    user_id: new FormControl('1234', Validators.required),
+    email: new FormControl('saikat.bala25@gmail.com', Validators.required),
+    last_updated: new FormControl(new Date(), Validators.required),
+    last_updated_by: new FormControl('1234', Validators.required),
+  });
 
   constructor(
     private _dialogRef: MatDialogRef<AddEditExperienceComponent>,
@@ -29,25 +46,9 @@ export class AddEditExperienceComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.experienceForm = new FormGroup({
-      experience_id: new FormControl(null),
-      start_date: new FormControl('', Validators.required),
-      end_date: new FormControl(''),
-      designation: new FormControl('', Validators.required),
-      company_name: new FormControl('', Validators.required),
-      office_city: new FormControl(''),
-      office_country: new FormControl(''),
-      skills: new FormControl(''),
-      tools: new FormControl(''),
-      work_description: new FormControl(''),
-      company_logo: new FormControl(''),
-      user_id: new FormControl('1234', Validators.required),
-      email: new FormControl('saikat.bala25@gmail.com', Validators.required),
-      last_updated: new FormControl(new Date(), Validators.required),
-      last_updated_by: new FormControl('1234', Validators.required),
-    },
-      // [this._validation.validateDeliveryDate(this.experienceForm.get("start_date").value,this.experienceForm.get("end_date").value)]
-    );
+    this.experienceForm.get("start_date")?.setValidators(this.validateStartEndDate(true));
+    this.experienceForm.get("end_date")?.setValidators(this.validateStartEndDate());
+    
     this.maxDate.setMonth(this.maxDate.getMonth() + 1);
     if (this.currentItem) {
       this.experienceForm.patchValue(this.currentItem);
@@ -86,12 +87,23 @@ export class AddEditExperienceComponent implements OnInit {
       end_date?.enable();
     }
   }
-  test() {
-    console.log(this.experienceForm.get("start_date").value);
-    console.log(this.experienceForm.value);
-  }
 
   onNoClick(): void {
     this._dialogRef.close();
+  }
+
+  validateStartEndDate(startDateField?:boolean): ValidatorFn {
+    return (): ValidationErrors | null => {
+      let start_date:any = this.experienceForm.get("start_date")?.value;
+      let end_date:any = this.experienceForm.get("end_date")?.value;
+      let isInvalid = false;
+      if(start_date && end_date)
+        isInvalid = new Date(start_date).valueOf() > new Date(end_date).valueOf();
+      if(isInvalid && startDateField){
+        this.experienceForm.get("end_date")?.setErrors({ invalidRange22: "End date should not be greater than start date" });
+        return null;
+      }
+      return isInvalid ? { invalidRange22: "End date should not be greater than start date" }: null;
+    };
   }
 }
