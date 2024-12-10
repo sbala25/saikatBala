@@ -1,0 +1,86 @@
+<h2 mat-dialog-title class="text-center">Experience</h2>
+<mat-dialog-content>
+  <button (click)="test()">test</button>
+  <form [formGroup]="experienceForm">
+    <div class="row">
+      <div class="col-md-12">
+        <mat-checkbox [checked]="isCurrentCompany()" (change)="currentlyWorkingUpdate($event)">I am currently working for this
+          company</mat-checkbox>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Start Data</mat-label>
+            <input matInput [matDatepicker]="picker_start_date" formControlName="start_date" [max]="maxDate">
+            <mat-datepicker-toggle matIconSuffix [for]="picker_start_date"></mat-datepicker-toggle>
+            <mat-datepicker #picker_start_date startView="multi-year"></mat-datepicker>
+          </mat-form-field>
+
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>End Date</mat-label>
+            <input matInput [matDatepicker]="picker_end_date" formControlName="end_date" [max]="maxDate">
+            <mat-datepicker-toggle matIconSuffix [for]="picker_end_date"></mat-datepicker-toggle>
+            <mat-datepicker #picker_end_date startView="multi-year"></mat-datepicker>
+          </mat-form-field>
+
+        </div>
+      </div>
+      <div class="col-md-12">
+        <mat-form-field class="w-100">
+          <mat-label>Designation</mat-label>
+          <input matInput placeholder="Enter designation" formControlName="designation">
+        </mat-form-field>
+      </div>
+      <div class="col-md-12">
+        <mat-form-field class="w-100">
+          <mat-label>Company name</mat-label>
+          <input matInput placeholder="Enter Company Name" formControlName="company_name">
+        </mat-form-field>
+      </div>
+      <div class="col-md-12">
+        <mat-form-field class="w-100">
+          <mat-label>Office City</mat-label>
+          <input matInput placeholder="Enter office city" formControlName="office_city">
+        </mat-form-field>
+      </div>
+      <div class="col-md-12">
+        <mat-form-field class="w-100">
+          <mat-label>Office Country</mat-label>
+          <input matInput placeholder="Enter office country" formControlName="office_country">
+        </mat-form-field>
+      </div>
+      <div class="col-md-12">
+        <mat-form-field class="w-100">
+          <mat-label>Skills</mat-label>
+          <input matInput placeholder="Enter Skills" formControlName="skills">
+        </mat-form-field>
+      </div>
+      <div class="col-md-12">
+        <mat-form-field class="w-100">
+          <mat-label>Tools</mat-label>
+          <input matInput placeholder="Enter Tools" formControlName="tools">
+        </mat-form-field>
+      </div>
+      <div class="col-md-12">
+        <mat-form-field class="w-100">
+          <mat-label>Work Description</mat-label>
+          <input matInput placeholder="Enter work description" formControlName="work_description">
+        </mat-form-field>
+      </div>
+      <div class="col-md-12">
+        <mat-form-field class="w-100">
+          <mat-label>Company logo url</mat-label>
+          <input matInput placeholder="Enter company logo url" formControlName="company_logo">
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-stroked-button (click)="onNoClick()">Cancel</button>
+  <button mat-button mat-flat-button (click)="saveExperience()">Save</button>
+</mat-dialog-actions>

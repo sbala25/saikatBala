@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class ApiManagerService {
 
-  private baseURL="https://saikatbalaapi.onrender.com/api/";
-  // private baseURL="http://localhost:8080/api/";
+  // private baseURL="https://saikatbalaapi.onrender.com/api/";
+  private baseURL="http://localhost:8080/api/";
 
   constructor(private _http:HttpClient) { }
 

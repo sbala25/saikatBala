@@ -7,23 +7,28 @@ import { UtilsService } from '../../service/utils.service';
 import { ConfirmModalComponent } from '../modal/confirm-modal/confirm-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { HttpParams } from '@angular/common/http';
+import { AddEditExperienceComponent } from '../modal/add-edit-experience/add-edit-experience.component';
+import {MatIconModule} from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import * as fortawesome_solid from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-experience',
-  imports: [CommonModule, ExperienceModalComponent],
+  imports: [CommonModule, ExperienceModalComponent, MatIconModule, MatButtonModule, FontAwesomeModule],
   templateUrl: './experience.component.html',
   styleUrl: './experience.component.scss'
 })
 export class ExperienceComponent implements OnInit, OnDestroy {
 
+  fortawesome_solid =fortawesome_solid;
   experienceList = signal<any>([]);
   isExperienceModal: boolean = false;
   currentItem = null;
   isAdminSub: any;
   isAdmin: boolean = false;
 
-  readonly animal = signal('');
-  readonly name = model('');
   readonly dialog = inject(MatDialog);
 
   constructor(
@@ -32,6 +37,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    // this.addEditExperience()
     this.loadExperience();
     this.isAdminSub = this._utils.isAdmin.subscribe(res => {
       this.isAdmin = res;
@@ -54,6 +60,9 @@ export class ExperienceComponent implements OnInit, OnDestroy {
       sortedData.sort(function (a: any, b: any) {
         return new Date(b.start_date).valueOf() - new Date(a.start_date).valueOf();
       });
+      sortedData.map((el:any)=>{
+        el.startDate = new Date(el.start_date);
+      })
       this.experienceList.update(() => sortedData);
     }, err => {
       console.log(err);
@@ -76,6 +85,19 @@ export class ExperienceComponent implements OnInit, OnDestroy {
           console.log(error);
         })
       }
+    });
+  }
+
+  addEditExperience(experience?:any){
+    const dialogRef1:any = this.dialog.open(AddEditExperienceComponent, {
+      data: experience,
+      disableClose: true,
+      width: "600px",
+      maxWidth: "100%"
+    });
+    dialogRef1.afterClosed().subscribe((result:any) => {
+      if(result)
+        this.loadExperience();
     });
   }
 

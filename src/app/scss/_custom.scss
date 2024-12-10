@@ -1068,7 +1068,8 @@ html {
 }
 
 .homesocialicons{
-    display: inline-block;
+    display: flex;
+    align-items: center;
     text-decoration: none;
     color: #700c86;
 
@@ -1078,10 +1079,11 @@ html {
     }
     span{
         position: relative;
-        display: inline-block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 40px;
         height: 40px ;
-        text-align: center;
         font-size: 1.4em;
         line-height: 1.5em;
         background: rgba(251, 217, 173, 0.972);

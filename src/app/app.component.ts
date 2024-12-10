@@ -5,13 +5,14 @@ import { CommonModule } from '@angular/common';
 import { FooterComponent } from "./components/common/footer/footer.component";
 import { LoaderComponent } from "./components/common/loader/loader.component";
 import { UtilsService } from './service/utils.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import * as fortawesome_solid from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, RouterOutlet, HeaderComponent, FooterComponent, LoaderComponent],
+  imports: [CommonModule, RouterOutlet, HeaderComponent, FooterComponent, LoaderComponent, FontAwesomeModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
   preloader: boolean = true;
@@ -20,6 +21,7 @@ export class AppComponent implements OnInit {
   title = 'saikatBala';
   isDevMode:boolean = isDevMode();
   isLoaderApi = signal<boolean>(false);
+  fortawesome_solid = fortawesome_solid;
 
   constructor(private _utilsService:UtilsService) {
 
