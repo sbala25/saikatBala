@@ -3,12 +3,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ApiManagerService } from '../../../service/apiManager/api-manager.service';
-import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
+import { from, map, Observable, of, switchMap, tap, timer } from 'rxjs';
 
 @Component({
   selector: 'app-add-edit-experience',
@@ -111,4 +112,9 @@ export class AddEditExperienceComponent implements OnInit {
       return isInvalid ? { invalidRange: "End date should not be greater than start date" }: null;
     };
   }
+
+  company_logoError(e:any){
+    // console.log(e);
+  }
 }
+
