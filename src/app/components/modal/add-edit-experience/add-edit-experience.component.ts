@@ -8,10 +8,11 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-edit-experience',
-  imports: [MatFormFieldModule, MatButtonModule, MatDialogTitle, MatDialogContent, MatDialogActions, ReactiveFormsModule, MatDatepickerModule,MatCheckboxModule,FormsModule, MatInputModule],
+  imports: [CommonModule, MatFormFieldModule, MatButtonModule, MatDialogTitle, MatDialogContent, MatDialogActions, ReactiveFormsModule, MatDatepickerModule,MatCheckboxModule,FormsModule, MatInputModule],
   providers: [provideNativeDateAdapter()],
   templateUrl: './add-edit-experience.component.html',
   styleUrl: './add-edit-experience.component.scss'
@@ -24,7 +25,7 @@ export class AddEditExperienceComponent implements OnInit {
 
   experienceForm = new FormGroup({
     experience_id: new FormControl(null),
-    start_date: new FormControl(null, [Validators.required]),
+    start_date: new FormControl(null),
     end_date: new FormControl(null),
     designation: new FormControl('', Validators.required),
     company_name: new FormControl('', Validators.required),
@@ -46,8 +47,8 @@ export class AddEditExperienceComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.experienceForm.get("start_date")?.setValidators(this.validateStartEndDate(true));
-    this.experienceForm.get("end_date")?.setValidators(this.validateStartEndDate());
+    this.experienceForm.get("start_date")?.setValidators([Validators.required, this.validateStartEndDate(true)]);
+    this.experienceForm.get("end_date")?.setValidators([this.validateStartEndDate()]);
     
     this.maxDate.setMonth(this.maxDate.getMonth() + 1);
     if (this.currentItem) {
@@ -99,11 +100,15 @@ export class AddEditExperienceComponent implements OnInit {
       let isInvalid = false;
       if(start_date && end_date)
         isInvalid = new Date(start_date).valueOf() > new Date(end_date).valueOf();
-      if(isInvalid && startDateField){
-        this.experienceForm.get("end_date")?.setErrors({ invalidRange22: "End date should not be greater than start date" });
+      if(startDateField){
+        if(isInvalid){
+          this.experienceForm.get("end_date")?.setErrors({ invalidRange: "End date should not be greater than start date" });
+        }else{
+          this.experienceForm.get("end_date")?.setErrors(null);
+        }
         return null;
       }
-      return isInvalid ? { invalidRange22: "End date should not be greater than start date" }: null;
+      return isInvalid ? { invalidRange: "End date should not be greater than start date" }: null;
     };
   }
 }

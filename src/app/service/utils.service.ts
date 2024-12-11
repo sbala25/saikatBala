@@ -9,7 +9,7 @@ export class UtilsService {
   constructor() { }
 
   isLoaderApi = new BehaviorSubject<boolean>(false);
-  isAdmin = new BehaviorSubject<boolean>(false)
+  isAdmin = new BehaviorSubject<boolean>(true)
 
   getAge(start_date:any, end_date:any) {
     let start_date_copy;

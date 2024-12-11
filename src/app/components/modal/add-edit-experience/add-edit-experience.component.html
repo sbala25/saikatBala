@@ -1,11 +1,4 @@
-<h2 mat-dialog-title class="text-center">Experience
-
-  <!-- @if(experienceForm.hasError('invalidRange')){
-    <div>
-      invalid
-    </div>
-  } -->
-</h2>
+<h2 mat-dialog-title class="text-center">Experience</h2>
 <mat-dialog-content>
   <form [formGroup]="experienceForm">
     <div class="row">
@@ -19,6 +12,7 @@
             <input matInput [matDatepicker]="picker_start_date" formControlName="start_date" [max]="maxDate">
             <mat-datepicker-toggle matIconSuffix [for]="picker_start_date"></mat-datepicker-toggle>
             <mat-datepicker #picker_start_date startView="multi-year"></mat-datepicker>
+            <mat-error *ngIf="experienceForm.get('start_date')?.hasError('required')">This is an required field.</mat-error>
           </mat-form-field>
       </div>
       <div class="col-md-6">
@@ -27,18 +21,23 @@
             <input matInput [matDatepicker]="picker_end_date" formControlName="end_date" [max]="maxDate">
             <mat-datepicker-toggle matIconSuffix [for]="picker_end_date"></mat-datepicker-toggle>
             <mat-datepicker #picker_end_date startView="multi-year"></mat-datepicker>
+            <mat-error *ngIf="experienceForm.get('end_date')?.hasError('required')">This is an required field.</mat-error>
+            <mat-error *ngIf="experienceForm.get('end_date')?.hasError('invalidRange')">End date should not be greater than start date.</mat-error>
+
           </mat-form-field>
       </div>
       <div class="col-md-12">
         <mat-form-field class="w-100">
           <mat-label>Designation</mat-label>
           <input matInput placeholder="Enter designation" formControlName="designation">
+          <mat-error *ngIf="experienceForm.get('designation')?.hasError('required')">This is an required field.</mat-error>
         </mat-form-field>
       </div>
       <div class="col-md-12">
         <mat-form-field class="w-100">
           <mat-label>Company name</mat-label>
           <input matInput placeholder="Enter Company Name" formControlName="company_name">
+          <mat-error *ngIf="experienceForm.get('company_name')?.hasError('required')">This is an required field.</mat-error>
         </mat-form-field>
       </div>
       <div class="col-md-12">
