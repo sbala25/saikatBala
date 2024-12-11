@@ -1,7 +1,6 @@
 import { Component, inject, model, OnDestroy, OnInit, signal } from '@angular/core';
-import { ApiManagerService } from '../../service/api-manager.service';
+import { ApiManagerService } from '../../service/apiManager/api-manager.service';
 import { CommonModule } from '@angular/common';
-import { UtilsService } from '../../service/utils.service';
 import { ConfirmModalComponent } from '../modal/confirm-modal/confirm-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { HttpParams } from '@angular/common/http';
@@ -10,6 +9,8 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import * as fortawesome_solid from '@fortawesome/free-solid-svg-icons';
+import { AppDataService } from '../../service/appData/app-data.service';
+import { UtilsService } from '../../service/utils/utils.service';
 
 
 @Component({
@@ -31,13 +32,14 @@ export class ExperienceComponent implements OnInit, OnDestroy {
 
   constructor(
     private _apiManager: ApiManagerService,
+    private _appData: AppDataService,
     protected _utils: UtilsService
   ) { }
 
   ngOnInit(): void {
     // this.addEditExperience()
     this.loadExperience();
-    this.isAdminSub = this._utils.isAdmin.subscribe(res => {
+    this.isAdminSub = this._appData.isAdmin.subscribe(res => {
       this.isAdmin = res;
     })
   }

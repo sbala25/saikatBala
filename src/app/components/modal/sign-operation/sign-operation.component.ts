@@ -1,11 +1,11 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialogActions, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { UtilsService } from '../../../service/utils.service';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { AppDataService } from '../../../service/appData/app-data.service';
 
 @Component({
   selector: 'app-sign-operation',
@@ -23,11 +23,9 @@ export class SignOperationComponent {
   isError = signal<string>("");
 
   constructor(
-    protected _utils:UtilsService,
+    protected _appData:AppDataService,
     private _dialogRef:MatDialogRef<SignOperationComponent>
-  ){
-    // this._dialogRef.disableClose = true;
-  }
+  ){}
   
   onNoClick(): void {
     this._dialogRef.close();
@@ -39,7 +37,7 @@ export class SignOperationComponent {
     }
     let newValue =  this.signinForm.value;
     if(newValue.username == "saikat.bala25@gmail.com", newValue.password=="12345"){
-      this._utils.isAdmin.next(true);
+      this._appData.isAdmin.next(true);
       this.onNoClick();
     }
     else{
