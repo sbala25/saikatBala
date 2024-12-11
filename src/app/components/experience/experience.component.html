@@ -5,7 +5,7 @@
     <div>
         @if (isAdmin) {
         <div class="">
-            <button class="btn btn-primary" (click)="addEditExperience()">Add Experience</button>
+            <button mat-fab extended (click)="addEditExperience()" class="mb-4">Add Experience</button>
         </div>
         }
         @if(experienceList().length){
@@ -27,7 +27,7 @@
                 <div class="experienceCard">
                     <div class="date">{{experience.start_date | date:"MMM y"}} to
                         @if (experience.end_date) {
-                        {{experience.end_date  | date:"MMMM YYYY"}}
+                        {{experience.end_date | date:"MMMM YYYY"}}
                         }
                         @else {
                         Present

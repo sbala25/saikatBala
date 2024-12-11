@@ -9,5 +9,5 @@ export class AppDataService {
   constructor() { }
 
   isLoaderApi = new BehaviorSubject<boolean>(false);
-  isAdmin = new BehaviorSubject<boolean>(true);
+  isAdmin = new BehaviorSubject<boolean>(false);
 }
