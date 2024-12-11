@@ -3,60 +3,72 @@
         <h1>IT Experience</h1>
     </div>
     <div>
+        @if (isAdmin) {
+        <div class="">
+            <button mat-fab extended (click)="addEditExperience()" class="mb-4">Add Experience</button>
+        </div>
+        }
+        @if(experienceList().length){
+
         <ul class="experience">
+            @for (experience of experienceList(); track experience) {
             <li>
+                @if (isAdmin) {
+                <div class="text-end">
+                    <button mat-mini-fab (click)="addEditExperience(experience)">
+                        <fa-icon [icon]="fortawesome_solid.faPenToSquare"></fa-icon>
+                    </button>
+                    <button mat-mini-fab class="ms-2"
+                        (click)="deleteExperience(experience.experience_id); currentItem=experience">
+                        <fa-icon [icon]="fortawesome_solid.faTrashCan"></fa-icon>
+                    </button>
+                </div>
+                }
                 <div class="experienceCard">
-                    <div class="date">September 2022 to Present</div>
-                    <h3 class="mb-0">Senior Software Engineer</h3>
-                    <h6>Wipro Limited, <span>Kolkata, India</span></h6>
-                    <div >
+                    <div class="date">{{experience.start_date | date:"MMM y"}} to
+                        @if (experience.end_date) {
+                        {{experience.end_date | date:"MMMM YYYY"}}
+                        }
+                        @else {
+                        Present
+                        }
+                        {{" - "+ _utils.getAge(experience.start_date, experience.end_date)}}
+                    </div>
+                    <h3 class="mb-0">{{experience.designation}}</h3>
+                    <h6>{{experience.company_name}}, <span>{{experience.office_city}},
+                            {{experience.office_country}}</span></h6>
+                    <div>
+                        @if (experience.skills) {
                         <div class="techDetails">
                             <div class="lhs">Skills :</div>
-                            <div class="value">Angular17, JavaScript (ES6), HTML5, CSS3, Bootstrap5, Angular17, JavaScript (ES6), HTML5, CSS3, Bootstrap5, Angular17, JavaScript (ES6), HTML5, CSS3, Bootstrap5 ,Angular17, JavaScript (ES6), HTML5, CSS3, Bootstrap5, Angular17, JavaScript (ES6), HTML5, CSS3, Bootstrap5, Angular17, JavaScript (ES6), HTML5, CSS3, Bootstrap5</div>
+                            <div class="value">{{experience.skills}}</div>
                         </div>
-                        <div  class="techDetails" >
-                            <div class="lhs">Tools :</div>
-                            <div class="value">Jira, Git, Bitbucket, VS code</div>
-                        </div>
-                        
-                    </div>
-                </div>
-                <div class="companyIcon">
-                    <img src="assets/images/wipro-logo.webp" alt="wipro-logo">
-                </div>
-            </li>
-            <li>
-                <div class="experienceCard">
-                    <div class="date">September 2022 to Present</div>
-                    <h3 class="mb-0">Senior Software Engineer</h3>
-                    <h6>Wipro Limited, <span>Kolkata, India</span></h6>
-                    <div >
+                        }
+                        @if (experience.tools) {
                         <div class="techDetails">
-                            <div class="lhs">Skills :</div>
-                            <div class="value">Angular17, JavaScript (ES6), HTML5, CSS3, Bootstrap5</div>
-                        </div>
-                        <div  class="techDetails" >
                             <div class="lhs">Tools :</div>
-                            <div class="value">Jira, Git, Bitbucket, VS code</div>
+                            <div class="value">{{experience.tools}}</div>
                         </div>
-                        
+                        }
+
                     </div>
+                    @if(experience.work_description){
+                    <p>{{experience.work_description}}</p>
+                    }
                 </div>
                 <div class="companyIcon">
-                    <img src="assets/images/wipro-logo.webp" alt="wipro-logo">
+                    @if (experience.company_logo) {
+                    <img src='{{experience.company_logo}}' alt="company-logo">
+                    }
                 </div>
             </li>
-            <li>
-                <div class="experienceCard">
-                    <div class="date">July 2022 to September 2022</div>
-                    <h3 class="mb-0">Senior Software Engineer</h3>
-                    <h6>Zensar Technologies</h6>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis tempora ratione sint. Voluptatum earum est recusandae suscipit nam. Nam tempora distinctio corrupti inventore porro, adipisci reiciendis aut atque repudiandae debitis.</p>
-                </div>
-                <div class="companyIcon">
-                    <img src="assets/images/zenser-logo.webp" alt="zenser-logo">
-                </div>
-            </li>
+            }
         </ul>
+        }
+        @else {
+        <div class="alert alert-warning" role="alert">
+            There is no experience!
+        </div>
+        }
     </div>
 </div>

@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>Sign in</h2>
+<mat-dialog-content>
+    <form [formGroup]="signinForm">
+        <div class="row">
+            <div class="col-12">
+        <div class="alert alert-danger" role="alert" *ngIf="isError()">
+            {{isError()}}
+        </div>
+    </div>
+    <div class="col-12">
+        <mat-form-field class="w-100">
+            <mat-label>User Name</mat-label>
+            <input matInput placeholder="User name" formControlName="username">
+        </mat-form-field>
+    </div>
+    <div class="col-12">
+        <mat-form-field class="w-100">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="User name" type="password" formControlName="password">
+        </mat-form-field>
+    </div>
+    </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-stroked-button (click)="onNoClick()">Cancel</button>
+    <button mat-button mat-flat-button (click)="signin()">Sign in</button>
+</mat-dialog-actions>

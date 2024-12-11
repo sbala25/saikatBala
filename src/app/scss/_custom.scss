@@ -33,7 +33,7 @@ html {
 /* --------- */
 /*  Preloader */
 /* --------- */
-#preloader {
+.preloader {
     position: fixed;
     top: 0;
     left: 0;
@@ -44,10 +44,6 @@ html {
     background-image: url(./../../assets/images/pre.svg);
     background-repeat: no-repeat;
     background-position: center;
-}
-
-#preloader-none {
-    opacity: 0;
 }
 
 #no-scroll {
@@ -90,12 +86,12 @@ html {
     backdrop-filter: blur(15px) !important;
 }
 
-.navbar {
-    position: fixed !important;
-    transition: all 0.3s ease-out 0s !important;
-    padding: 0.3rem 2rem !important;
-    font-size: 1.2rem !important;
-}
+// .navbar {
+//     position: fixed !important;
+//     transition: all 0.3s ease-out 0s !important;
+//     padding: 0.3rem 2rem !important;
+//     font-size: 1.2rem !important;
+// }
 
 .navbar-toggler {
     padding: 0.25rem 1.5rem !important;
@@ -320,8 +316,6 @@ html {
 }
 
 .home-section {
-    position: relative;
-    z-index: 2;
     background-image: var(--image-gradient), url('./../../assets/images/h3.webp');
     background-position: top center;
     background-size: cover !important;
@@ -431,14 +425,14 @@ html {
 }
 
 .home-about-section {
-    position: relative;
+    // position: relative;
     padding-bottom: 70px !important;
     padding-top: 70px !important;
     color: #fff;
 }
 
 .certificate-section {
-    position: relative;
+    // position: relative;
     padding-bottom: 70px !important;
     padding-top: 0px !important;
     color: #fff;
@@ -474,12 +468,12 @@ html {
     justify-content: center !important;
     padding-top: 15px !important;
     display: inline-block !important;
-    position: relative !important;
+    // position: relative !important;
     padding-inline-start: 0 !important;
 }
 
 .home-social-icons {
-    position: relative !important;
+    // position: relative !important;
     display: inline-block !important;
     width: 151px !important;
     height: 151px !important;
@@ -597,7 +591,7 @@ html {
 /* Projects */
 /* --------- */
 .project-section {
-    position: relative !important;
+    // position: relative !important;
     padding-top: 150px !important;
     padding-bottom: 30px !important;
     background-image: var(--section-background-color) !important;
@@ -698,7 +692,7 @@ html {
 /* --------- */
 
 .about-section {
-    position: relative !important;
+    // position: relative !important;
     padding-top: 150px !important;
     padding-bottom: 30px !important;
     background-image: var(--section-background-color) !important;
@@ -763,7 +757,7 @@ html {
 /* --------- */
 
 .resume-section {
-    position: relative !important;
+    // position: relative !important;
     padding-top: 110px !important;
     padding-bottom: 30px !important;
     background-image: var(--section-background-color) !important;
@@ -807,7 +801,7 @@ html {
     padding: 0 0 10px 25px;
     margin-top: -2px;
     border-left: 2px solid #8a49a8;
-    position: relative;
+    // position: relative;
 }
 
 .resume .resume-item .resume-title {
@@ -1069,12 +1063,13 @@ html {
     justify-content: center !important;
     padding-top: 15px !important;
     display: inline-block !important;
-    position: relative !important;
+    // position: relative !important;
     padding-inline-start: 0 !important;
 }
 
 .homesocialicons{
-    display: inline-block;
+    display: flex;
+    align-items: center;
     text-decoration: none;
     color: #700c86;
 
@@ -1084,10 +1079,11 @@ html {
     }
     span{
         position: relative;
-        display: inline-block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 40px;
         height: 40px ;
-        text-align: center;
         font-size: 1.4em;
         line-height: 1.5em;
         background: rgba(251, 217, 173, 0.972);
